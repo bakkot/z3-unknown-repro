@@ -26,5 +26,5 @@ export ROOT=$PWD
 cd $ROOT
 
 export EM_CACHE=$HOME/.emscripten/
-export FNS='["_Z3_mk_config","_Z3_mk_context","_Z3_mk_solver","_Z3_solver_inc_ref","_Z3_solver_from_string","_Z3_solver_check","_Z3_solver_get_reason_unknown"]'
+export FNS='["_Z3_global_param_set","_Z3_mk_config","_Z3_mk_context","_Z3_mk_solver","_Z3_solver_inc_ref","_Z3_solver_from_string","_Z3_solver_check","_Z3_solver_get_reason_unknown"]'
 emcc just-z3.c z3/build/libz3.a -g2 -fexceptions -s MODULARIZE=1 -s 'EXPORT_NAME="initZ3"' -s EXPORTED_RUNTIME_METHODS='["allocate","intArrayToString","intArrayFromString","ALLOC_NORMAL"]' -s SAFE_HEAP=0 -s DEMANGLE_SUPPORT=1 -s EXPORTED_FUNCTIONS=${FNS} -s DISABLE_EXCEPTION_CATCHING=0 -s TOTAL_MEMORY=1GB -I z3/src/api/ -o z3-built.js

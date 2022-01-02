@@ -10,4 +10,4 @@ Running `node run-z3-node.js` will load the wasm, then use it to create a solver
 
 If you remove a constraint and try again - which the script will proceed to do - it will be `sat` instead.
 
-You can also build and run `run-z3.cc`, which has the same set of commands as the JS API and which prints sat (i.e. 1).
+You can also build and run `run-z3.cc`, which loads and runs the solver in exactly the same way as the JS API but which prints `sat` (i.e. 1) instead of `unknown`.

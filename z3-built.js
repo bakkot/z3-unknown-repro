@@ -33,6 +33,12 @@ Module['ready'] = new Promise(function(resolve, reject) {
   readyPromiseReject = reject;
 });
 
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_Z3_global_param_set')) {
+        Object.defineProperty(Module['ready'], '_Z3_global_param_set', { configurable: true, get: function() { abort('You are getting _Z3_global_param_set on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_Z3_global_param_set', { configurable: true, set: function() { abort('You are setting _Z3_global_param_set on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
       if (!Object.getOwnPropertyDescriptor(Module['ready'], '_Z3_mk_config')) {
         Object.defineProperty(Module['ready'], '_Z3_mk_config', { configurable: true, get: function() { abort('You are getting _Z3_mk_config on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
         Object.defineProperty(Module['ready'], '_Z3_mk_config', { configurable: true, set: function() { abort('You are setting _Z3_mk_config on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
@@ -5600,6 +5606,9 @@ var asmLibraryArg = {
 var asm = createWasm();
 /** @type {function(...*):?} */
 var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__wasm_call_ctors");
+
+/** @type {function(...*):?} */
+var _Z3_global_param_set = Module["_Z3_global_param_set"] = createExportWrapper("Z3_global_param_set");
 
 /** @type {function(...*):?} */
 var _Z3_mk_config = Module["_Z3_mk_config"] = createExportWrapper("Z3_mk_config");

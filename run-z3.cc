@@ -10,6 +10,8 @@ int main(void) {
   buffer << f.rdbuf();
   string desc = buffer.str();
 
+  Z3_global_param_set("verbose", "10");
+
   // create a solver from the description in solver.txt
   // we're not going to bother cleaning any of this up because it's about to terminate anyway
   Z3_config conf = Z3_mk_config();

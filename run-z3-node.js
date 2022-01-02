@@ -48,6 +48,6 @@ let checkResultToStr = r => ({
   console.log('result:', checkResultToStr(checkResult));
   console.log('reason:', JSON.stringify(Module.intArrayToString(reason)));
 
-  console.log('trace:', JSON.stringify(Module.FS.readFile('/.z3-trace', { encoding: 'utf8' })));
+  // console.log('trace:', JSON.stringify(Module.FS.readFile('/.z3-trace', { encoding: 'utf8' })));
 
 })().catch(e => { console.error('threw', e); process.exit(1); });

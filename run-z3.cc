@@ -11,6 +11,10 @@ int main(void) {
   string desc = buffer.str();
 
   Z3_global_param_set("verbose", "10");
+  Z3_enable_trace("after_search");
+  Z3_enable_trace("asserted_formulas");
+  Z3_enable_trace("sat");
+
 
   // create a solver from the description in solver.txt
   // we're not going to bother cleaning any of this up because it's about to terminate anyway

@@ -13,6 +13,8 @@ let checkResultToStr = r => ({
 
 (async () => {
   let Module = await initZ3();
+
+  console.log('### JS execution starts here');
   let desc = fs.readFileSync('./solver.txt', 'utf8');
 
   if (REMOVE_C889_CONSTRAINT) {

@@ -25,6 +25,9 @@ let checkResultToStr = r => ({
   }
 
   Module._Z3_global_param_set(stringToPointer("verbose"), stringToPointer('10'));
+  Module._Z3_enable_trace(stringToPointer("after_search"));
+  Module._Z3_enable_trace(stringToPointer("asserted_formulas"));
+  Module._Z3_enable_trace(stringToPointer("sat"));
 
   // create a solver from the description in solver.txt
   // we're not going to bother cleaning any of this up because it's about to terminate anyway
@@ -36,9 +39,13 @@ let checkResultToStr = r => ({
   Module._Z3_solver_from_string(ctx, solver, stringToPointer(desc));
 
   let checkResult = Module._Z3_solver_check(ctx, solver);
+  let error = Module._Z3_get_error_code(ctx);
+  console.log('error:', error);
   let reason = Module._Z3_solver_get_reason_unknown(ctx, solver);
 
   console.log('result:', checkResultToStr(checkResult));
   console.log('reason:', JSON.stringify(Module.intArrayToString(reason)));
 
-})().catch(e => { console.error(e); process.exit(1); });
+  console.log('trace:', JSON.stringify(Module.FS.readFile('/.z3-trace', { encoding: 'utf8' })));
+
+})().catch(e => { console.error('threw', e); process.exit(1); });

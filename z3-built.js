@@ -33,6 +33,18 @@ Module['ready'] = new Promise(function(resolve, reject) {
   readyPromiseReject = reject;
 });
 
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_Z3_enable_trace')) {
+        Object.defineProperty(Module['ready'], '_Z3_enable_trace', { configurable: true, get: function() { abort('You are getting _Z3_enable_trace on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_Z3_enable_trace', { configurable: true, set: function() { abort('You are setting _Z3_enable_trace on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_Z3_get_error_code')) {
+        Object.defineProperty(Module['ready'], '_Z3_get_error_code', { configurable: true, get: function() { abort('You are getting _Z3_get_error_code on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_Z3_get_error_code', { configurable: true, set: function() { abort('You are setting _Z3_get_error_code on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
       if (!Object.getOwnPropertyDescriptor(Module['ready'], '_Z3_global_param_set')) {
         Object.defineProperty(Module['ready'], '_Z3_global_param_set', { configurable: true, get: function() { abort('You are getting _Z3_global_param_set on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
         Object.defineProperty(Module['ready'], '_Z3_global_param_set', { configurable: true, set: function() { abort('You are setting _Z3_global_param_set on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
@@ -5537,12 +5549,14 @@ var asmLibraryArg = {
   "invoke_diid": invoke_diid,
   "invoke_diii": invoke_diii,
   "invoke_diiii": invoke_diiii,
+  "invoke_fi": invoke_fi,
   "invoke_fii": invoke_fii,
   "invoke_fiii": invoke_fiii,
   "invoke_i": invoke_i,
   "invoke_id": invoke_id,
   "invoke_ii": invoke_ii,
   "invoke_iid": invoke_iid,
+  "invoke_iif": invoke_iif,
   "invoke_iii": invoke_iii,
   "invoke_iiid": invoke_iiid,
   "invoke_iiii": invoke_iiii,
@@ -5562,9 +5576,11 @@ var asmLibraryArg = {
   "invoke_iiiiij": invoke_iiiiij,
   "invoke_iiiij": invoke_iiiij,
   "invoke_iiiijiii": invoke_iiiijiii,
+  "invoke_iiij": invoke_iiij,
   "invoke_iiijii": invoke_iiijii,
   "invoke_iij": invoke_iij,
   "invoke_iiji": invoke_iiji,
+  "invoke_ij": invoke_ij,
   "invoke_j": invoke_j,
   "invoke_ji": invoke_ji,
   "invoke_jii": invoke_jii,
@@ -5595,6 +5611,7 @@ var asmLibraryArg = {
   "invoke_viiiij": invoke_viiiij,
   "invoke_viiiiji": invoke_viiiiji,
   "invoke_viiij": invoke_viiij,
+  "invoke_viiijiiii": invoke_viiijiiii,
   "invoke_viij": invoke_viij,
   "invoke_viiji": invoke_viiji,
   "invoke_vij": invoke_vij,
@@ -5608,13 +5625,19 @@ var asm = createWasm();
 var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__wasm_call_ctors");
 
 /** @type {function(...*):?} */
+var _Z3_mk_context = Module["_Z3_mk_context"] = createExportWrapper("Z3_mk_context");
+
+/** @type {function(...*):?} */
+var _Z3_enable_trace = Module["_Z3_enable_trace"] = createExportWrapper("Z3_enable_trace");
+
+/** @type {function(...*):?} */
+var _Z3_get_error_code = Module["_Z3_get_error_code"] = createExportWrapper("Z3_get_error_code");
+
+/** @type {function(...*):?} */
 var _Z3_global_param_set = Module["_Z3_global_param_set"] = createExportWrapper("Z3_global_param_set");
 
 /** @type {function(...*):?} */
 var _Z3_mk_config = Module["_Z3_mk_config"] = createExportWrapper("Z3_mk_config");
-
-/** @type {function(...*):?} */
-var _Z3_mk_context = Module["_Z3_mk_context"] = createExportWrapper("Z3_mk_context");
 
 /** @type {function(...*):?} */
 var _Z3_mk_solver = Module["_Z3_mk_solver"] = createExportWrapper("Z3_mk_solver");
@@ -5716,6 +5739,9 @@ var dynCall_viij = Module["dynCall_viij"] = createExportWrapper("dynCall_viij");
 var dynCall_iij = Module["dynCall_iij"] = createExportWrapper("dynCall_iij");
 
 /** @type {function(...*):?} */
+var dynCall_jiij = Module["dynCall_jiij"] = createExportWrapper("dynCall_jiij");
+
+/** @type {function(...*):?} */
 var dynCall_viiiij = Module["dynCall_viiiij"] = createExportWrapper("dynCall_viiiij");
 
 /** @type {function(...*):?} */
@@ -5725,7 +5751,7 @@ var dynCall_viiiiji = Module["dynCall_viiiiji"] = createExportWrapper("dynCall_v
 var dynCall_viiiiiji = Module["dynCall_viiiiiji"] = createExportWrapper("dynCall_viiiiiji");
 
 /** @type {function(...*):?} */
-var dynCall_jiij = Module["dynCall_jiij"] = createExportWrapper("dynCall_jiij");
+var dynCall_viiijiiii = Module["dynCall_viiijiiii"] = createExportWrapper("dynCall_viiijiiii");
 
 /** @type {function(...*):?} */
 var dynCall_iiiijiii = Module["dynCall_iiiijiii"] = createExportWrapper("dynCall_iiiijiii");
@@ -5737,6 +5763,9 @@ var dynCall_vij = Module["dynCall_vij"] = createExportWrapper("dynCall_vij");
 var dynCall_iiji = Module["dynCall_iiji"] = createExportWrapper("dynCall_iiji");
 
 /** @type {function(...*):?} */
+var dynCall_iiij = Module["dynCall_iiij"] = createExportWrapper("dynCall_iiij");
+
+/** @type {function(...*):?} */
 var dynCall_iiiiiiiji = Module["dynCall_iiiiiiiji"] = createExportWrapper("dynCall_iiiiiiiji");
 
 /** @type {function(...*):?} */
@@ -5744,6 +5773,9 @@ var dynCall_viiji = Module["dynCall_viiji"] = createExportWrapper("dynCall_viiji
 
 /** @type {function(...*):?} */
 var dynCall_iiiij = Module["dynCall_iiiij"] = createExportWrapper("dynCall_iiiij");
+
+/** @type {function(...*):?} */
+var dynCall_ij = Module["dynCall_ij"] = createExportWrapper("dynCall_ij");
 
 /** @type {function(...*):?} */
 var dynCall_jiii = Module["dynCall_jiii"] = createExportWrapper("dynCall_jiii");
@@ -5755,10 +5787,10 @@ var dynCall_viiij = Module["dynCall_viiij"] = createExportWrapper("dynCall_viiij
 var dynCall_iiijii = Module["dynCall_iiijii"] = createExportWrapper("dynCall_iiijii");
 
 
-function invoke_vi(index,a1) {
+function invoke_iii(index,a1,a2) {
 var sp = stackSave();
 try {
-  getWasmTableEntry(index)(a1);
+  return getWasmTableEntry(index)(a1,a2);
 } catch(e) {
   stackRestore(sp);
   if (e !== e+0 && e !== 'longjmp') throw e;
@@ -5799,10 +5831,10 @@ try {
 }
 }
 
-function invoke_iii(index,a1,a2) {
+function invoke_vi(index,a1) {
 var sp = stackSave();
 try {
-  return getWasmTableEntry(index)(a1,a2);
+  getWasmTableEntry(index)(a1);
 } catch(e) {
   stackRestore(sp);
   if (e !== e+0 && e !== 'longjmp') throw e;
@@ -6063,6 +6095,17 @@ try {
 }
 }
 
+function invoke_iiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
+var sp = stackSave();
+try {
+  return getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9);
+} catch(e) {
+  stackRestore(sp);
+  if (e !== e+0 && e !== 'longjmp') throw e;
+  _setThrew(1, 0);
+}
+}
+
 function invoke_viiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8) {
 var sp = stackSave();
 try {
@@ -6100,39 +6143,6 @@ function invoke_di(index,a1) {
 var sp = stackSave();
 try {
   return getWasmTableEntry(index)(a1);
-} catch(e) {
-  stackRestore(sp);
-  if (e !== e+0 && e !== 'longjmp') throw e;
-  _setThrew(1, 0);
-}
-}
-
-function invoke_viifi(index,a1,a2,a3,a4) {
-var sp = stackSave();
-try {
-  getWasmTableEntry(index)(a1,a2,a3,a4);
-} catch(e) {
-  stackRestore(sp);
-  if (e !== e+0 && e !== 'longjmp') throw e;
-  _setThrew(1, 0);
-}
-}
-
-function invoke_iiiif(index,a1,a2,a3,a4) {
-var sp = stackSave();
-try {
-  return getWasmTableEntry(index)(a1,a2,a3,a4);
-} catch(e) {
-  stackRestore(sp);
-  if (e !== e+0 && e !== 'longjmp') throw e;
-  _setThrew(1, 0);
-}
-}
-
-function invoke_iiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
-var sp = stackSave();
-try {
-  return getWasmTableEntry(index)(a1,a2,a3,a4,a5,a6,a7,a8,a9);
 } catch(e) {
   stackRestore(sp);
   if (e !== e+0 && e !== 'longjmp') throw e;
@@ -6206,6 +6216,39 @@ try {
 }
 }
 
+function invoke_viiiid(index,a1,a2,a3,a4,a5) {
+var sp = stackSave();
+try {
+  getWasmTableEntry(index)(a1,a2,a3,a4,a5);
+} catch(e) {
+  stackRestore(sp);
+  if (e !== e+0 && e !== 'longjmp') throw e;
+  _setThrew(1, 0);
+}
+}
+
+function invoke_fi(index,a1) {
+var sp = stackSave();
+try {
+  return getWasmTableEntry(index)(a1);
+} catch(e) {
+  stackRestore(sp);
+  if (e !== e+0 && e !== 'longjmp') throw e;
+  _setThrew(1, 0);
+}
+}
+
+function invoke_iif(index,a1,a2) {
+var sp = stackSave();
+try {
+  return getWasmTableEntry(index)(a1,a2);
+} catch(e) {
+  stackRestore(sp);
+  if (e !== e+0 && e !== 'longjmp') throw e;
+  _setThrew(1, 0);
+}
+}
+
 function invoke_fii(index,a1,a2) {
 var sp = stackSave();
 try {
@@ -6217,10 +6260,10 @@ try {
 }
 }
 
-function invoke_viiiid(index,a1,a2,a3,a4,a5) {
+function invoke_viifi(index,a1,a2,a3,a4) {
 var sp = stackSave();
 try {
-  getWasmTableEntry(index)(a1,a2,a3,a4,a5);
+  getWasmTableEntry(index)(a1,a2,a3,a4);
 } catch(e) {
   stackRestore(sp);
   if (e !== e+0 && e !== 'longjmp') throw e;
@@ -6265,6 +6308,17 @@ function invoke_viidd(index,a1,a2,a3,a4) {
 var sp = stackSave();
 try {
   getWasmTableEntry(index)(a1,a2,a3,a4);
+} catch(e) {
+  stackRestore(sp);
+  if (e !== e+0 && e !== 'longjmp') throw e;
+  _setThrew(1, 0);
+}
+}
+
+function invoke_iiiif(index,a1,a2,a3,a4) {
+var sp = stackSave();
+try {
+  return getWasmTableEntry(index)(a1,a2,a3,a4);
 } catch(e) {
   stackRestore(sp);
   if (e !== e+0 && e !== 'longjmp') throw e;
@@ -6393,6 +6447,17 @@ try {
 }
 }
 
+function invoke_viiijiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
+var sp = stackSave();
+try {
+  dynCall_viiijiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9);
+} catch(e) {
+  stackRestore(sp);
+  if (e !== e+0 && e !== 'longjmp') throw e;
+  _setThrew(1, 0);
+}
+}
+
 function invoke_iiji(index,a1,a2,a3,a4) {
 var sp = stackSave();
 try {
@@ -6426,6 +6491,17 @@ try {
 }
 }
 
+function invoke_iiij(index,a1,a2,a3,a4) {
+var sp = stackSave();
+try {
+  return dynCall_iiij(index,a1,a2,a3,a4);
+} catch(e) {
+  stackRestore(sp);
+  if (e !== e+0 && e !== 'longjmp') throw e;
+  _setThrew(1, 0);
+}
+}
+
 function invoke_iiiiiiiji(index,a1,a2,a3,a4,a5,a6,a7,a8,a9) {
 var sp = stackSave();
 try {
@@ -6452,6 +6528,17 @@ function invoke_iiiij(index,a1,a2,a3,a4,a5) {
 var sp = stackSave();
 try {
   return dynCall_iiiij(index,a1,a2,a3,a4,a5);
+} catch(e) {
+  stackRestore(sp);
+  if (e !== e+0 && e !== 'longjmp') throw e;
+  _setThrew(1, 0);
+}
+}
+
+function invoke_ij(index,a1,a2) {
+var sp = stackSave();
+try {
+  return dynCall_ij(index,a1,a2);
 } catch(e) {
   stackRestore(sp);
   if (e !== e+0 && e !== 'longjmp') throw e;
@@ -6682,7 +6769,7 @@ if (!Object.getOwnPropertyDescriptor(Module, "funcWrappers")) Module["funcWrappe
 if (!Object.getOwnPropertyDescriptor(Module, "getFuncWrapper")) Module["getFuncWrapper"] = function() { abort("'getFuncWrapper' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "setMainLoop")) Module["setMainLoop"] = function() { abort("'setMainLoop' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "wget")) Module["wget"] = function() { abort("'wget' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)") };
-if (!Object.getOwnPropertyDescriptor(Module, "FS")) Module["FS"] = function() { abort("'FS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+Module["FS"] = FS;
 if (!Object.getOwnPropertyDescriptor(Module, "MEMFS")) Module["MEMFS"] = function() { abort("'MEMFS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "TTY")) Module["TTY"] = function() { abort("'TTY' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "PIPEFS")) Module["PIPEFS"] = function() { abort("'PIPEFS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)") };
